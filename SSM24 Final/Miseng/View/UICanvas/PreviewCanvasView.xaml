@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Miseng.View.UICanvas.PreviewCanvasView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:l="clr-namespace:Miseng.ViewModel.UICanvas"
+        mc:Ignorable="d ignore">
+
+    <Grid Background="#FF1A1A1A">
+        <ListBox Margin="10" Name="lvDataBinding" ItemsSource="{Binding}">  
+            <ListBox.ItemTemplate>
+                <DataTemplate>      
+                    <WrapPanel>                   
+                        <TextBlock MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"  
+                                   Text="{Binding Path=UIELEMENT_TYPE, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                   ToolTip="{Binding Path=UIELEMENT_ID}" Foreground="#FFFFFFFF"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>        
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">       
+    <script src="./lib/tau/wearable/js/tau.js"></script>
+    <script src="./js/core/core.js" data-main="./js/app.js"></script> 
+    <script src="./js/sapModule.js"></script>
+  
+<body>   
+	<button type="button" class="ui-btn" id="left_btn">left_dw</button>
+	<button type="button" class="ui-btn" id="right_btn">right_dw</button>
+</body>
+<script>
+document.getElementById("left_btn").addEventListener("click",function(e){
+sendData("left");
+});
+document.getElementById("right_btn").addEventListener("click",function(e){sendData("right");});
+</script>
+</head>
+</html>

@@ -1,0 +1,22 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\jsBall\dynamic_shoot_ball.js">
+    <Files>
+      <File FileName="Assets\TerrainToolkit\MiniFlagLocation.js" Line="10" Column="54" />
+      <File FileName="Assets\TerrainToolkit\MapLocation.js" Line="9" Column="51" />
+      <File FileName="Assets\jsBall\ball_arrow.js" Line="35" Column="3" />
+      <File FileName="Assets\Trigger\Green.js" Line="15" Column="19" />
+      <File FileName="Assets\Trigger\GreenFlag.js" Line="9" Column="45" />
+      <File FileName="Assets\TerrainToolkit\EndMsg.js" Line="36" Column="30" />
+      <File FileName="Assets\jsBall\Look.js" Line="41" Column="82" />
+      <File FileName="Assets\jsBall\holeCup.js" Line="14" Column="32" />
+      <File FileName="Assets\jsBall\dynamic_shoot_ball.js" Line="121" Column="12" />
+      <File FileName="Assets\TerrainToolkit\ClubChanger.js" Line="40" Column="69" />
+      <File FileName="Assets\TerrainToolkit\BallGUI.js" Line="18" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,68 @@
+﻿<Control x:Class="Miseng.View.ExtendUIMaking.ColorPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:l="clr-namespace:Miseng.View.ExtendUIMaking"
+        mc:Ignorable="d ignore">
+
+    <Control.Resources>
+
+        <LinearGradientBrush x:Key="BrightnessLayerBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF000000" Offset="1"/>
+            <GradientStop Color="#00000000" Offset="0"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="HueLayerBrush" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFFF0000" Offset="0"/>
+            <GradientStop Color="#FFFFFF00" Offset="0.167"/>
+            <GradientStop Color="#FF00FF00" Offset="0.333"/>
+            <GradientStop Color="#FF00FFFF" Offset="0.5"/>
+            <GradientStop Color="#FF0000FF" Offset="0.667"/>
+            <GradientStop Color="#FFFF00FF" Offset="0.833"/>
+            <GradientStop Color="#FFFF0000" Offset="1"/>
+        </LinearGradientBrush>
+
+    </Control.Resources>
+
+    <Control.Template>
+        <ControlTemplate TargetType="{x:Type l:ColorPicker}">
+            <Grid ClipToBounds="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Saturation & Brightness Area -->
+                <Grid Grid.Column="0" >
+
+                    <Rectangle SnapsToDevicePixels="True">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                <GradientStop Color="{Binding Hue, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static l:HueToSolidBrush.Instance}}" Offset="1" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle SnapsToDevicePixels="True" Fill="{StaticResource BrightnessLayerBrush}"/>
+                    <Canvas Background="Transparent" x:Name="PART_SBHost">
+                        <Grid x:Name="PART_SBPicker" Margin="-10" Width="10" Height="10" IsHitTestVisible="False" >
+                            <Ellipse Stroke="White" StrokeThickness="2" SnapsToDevicePixels="True"/>
+                            <Ellipse Stroke="Black" StrokeThickness="1" SnapsToDevicePixels="True"/>
+                        </Grid>
+                    </Canvas>
+                </Grid>
+
+                <!-- Hue Area -->
+                <Canvas x:Name="PART_HueHost" Grid.Column="1" Background="{StaticResource HueLayerBrush}">
+                    <Grid x:Name="PART_HuePicker" Height="8" Margin="0,-4" IsHitTestVisible="False" 
+                          Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}">
+                        <Path Fill="Black" Data="M35,0 L35,8 27,4 z M0,0 L8,4 0,8 z" Stretch="None" SnapsToDevicePixels="True" />
+                    </Grid>
+                </Canvas>
+
+            </Grid>
+        </ControlTemplate>
+    </Control.Template>
+</Control>

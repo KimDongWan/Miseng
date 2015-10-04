@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<!-- saved from url=(0011)about:blank -->
+<!-- saved from url=(0016)http://localhost --> 
+<!-- saved from url=(0027)C:\Users\kdw\Desktop\blockly\index.html --> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=11">
+<title>Blockly Demo: Generating JavaScript</title>
+<script src="jquery-1.11.2.min.js"></script>
+<script src="blockly_compressed.js"></script>
+<script src="blocks_compressed.js"></script>
+<script src="javascript_compressed.js"></script>
+<script src="en.js"></script>
+<script src="init_data.js"></script>
+<script src="blockly_load.js"></script>
+<script src="custum_block.js"></script>
+
+<style>
+html{
+	width:100%;
+	height:100%;
+	
+}
+body {
+	margin:0px !important;
+	padding:0px !important;
+	overflow:hidden !important;
+	width:100%;
+	height:100%;
+	min-height:100% !important;
+	background-color: #1A1A1A;
+	font-family: sans-serif;
+	marin:0px;
+	padding:0px;
+	
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 140%;
+}
+#blocklyDiv{
+	overflow:hidden;
+	width:100%;
+	height:100%;
+	
+	min-height:100% !important;
+	margin:0px;
+	padding:0px;	
+	font-weight:700;
+	color:gray;
+	
+	background-color: #2D2D2D;
+background-image: linear-gradient(45deg, #2F2F2F 25%, transparent 25%, transparent 75%, #2F2F2F 75%, #2F2F2F), 
+linear-gradient(45deg, #2F2F2F 25%, transparent 25%, transparent 75%, #2F2F2F 75%, #2F2F2F);
+background-size:20px 20px;
+background-position:0 0, 30px 30px;	
+	
+}
+.blocklyScrollbarBackground{
+	display: none;
+}
+.blocklyScrollbarKnob{
+	display: none;
+}
+
+.blocklyNonEditableText>rect, .blocklyEditableText>rect{
+	fill:#FFF;
+}
+.blocklySvg>g>rect{
+	fill:#2D2D2D !important;
+}
+</style>
+
+<style type="text/css">.blocklyDraggable {}
+.blocklySvg {
+ border: 0px solid #ddd;
+  overflow: hidden;
+}
+.blocklyWidgetDiv {
+  display: none;
+  position: absolute;
+  z-index: 999;
+}
+.blocklyResizeSE {
+  cursor: se-resize;
+  fill: #aaa;
+}
+.blocklyResizeSW {
+  cursor: sw-resize;
+  fill: #aaa;
+}
+.blocklyResizeLine {
+  stroke: #888;
+  stroke-width: 1;
+}
+.blocklyHighlightedConnectionPath {
+  fill: none;
+  stroke: #fc3;
+  stroke-width: 4px;
+}
+.blocklyPathLight {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+.blocklySelected>.blocklyPath {
+  stroke: #fc3;
+  stroke-width: 3px;
+}
+.blocklySelected>.blocklyPathLight {
+  display: none;
+}
+.blocklyDragging>.blocklyPath,
+.blocklyDragging>.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+.blocklyDragging>.blocklyPathDark {
+  display: none;
+}
+.blocklyDisabled>.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+.blocklyDisabled>.blocklyPathLight,
+.blocklyDisabled>.blocklyPathDark {
+  display: none;
+}
+.blocklyText {
+  cursor: default;
+  fill: #fff;
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+.blocklyNonEditableText>text {
+  pointer-events: none;
+}
+.blocklyNonEditableText>rect,
+.blocklyEditableText>rect {
+  fill: #fff;
+  fill-opacity: .6;
+}
+.blocklyNonEditableText>text,
+.blocklyEditableText>text {
+  fill: #000;
+}
+.blocklyEditableText:hover>rect {
+  stroke: #fff;
+  stroke-width: 2;
+}
+.blocklyBubbleText {
+  fill: #000;
+}
+.blocklySvg text {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  cursor: inherit;
+}
+.blocklyHidden {
+  display: none;
+}
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+.blocklyTooltipBackground {
+  fill: #ffffc7;
+  stroke: #d8d8d8;
+  stroke-width: 1px;
+}
+.blocklyTooltipShadow,
+.blocklyDropdownMenuShadow {
+  fill: #bbb;
+  filter: url(#blocklyShadowFilter);
+}
+.blocklyTooltipText {
+  fill: #000;
+  font-family: sans-serif;
+  font-size: 9pt;
+}
+.blocklyIconShield {
+  cursor: default;
+  fill: #00c;
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+.blocklyIconGroup:hover>.blocklyIconShield {
+  fill: #00f;
+  stroke: #fff;
+}
+.blocklyIconGroup:hover>.blocklyIconMark {
+  fill: #fff;
+}
+.blocklyIconMark {
+  cursor: default !important;
+  fill: #ccc;
+  font-family: sans-serif;
+  font-size: 9pt;
+  font-weight: bold;
+  text-anchor: middle;
+}
+.blocklyWarningBody {
+}
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+.blocklyCommentTextarea {
+  background-color: #ffc;
+  border: 0;
+  margin: 0;
+  padding: 2px;
+  resize: none;
+}
+.blocklyHtmlInput {
+  border: none;
+  font-family: sans-serif;
+  font-size: 11pt;
+  outline: none;
+  width: 100%
+}
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 1;
+}
+.blocklyFlyoutBackground {
+  fill: #575757;
+  fill-opacity: .8;
+}
+.blocklyColourBackground {
+  fill: #666;
+}
+.blocklyScrollbarBackground {
+  fill: #fff;
+  stroke: #e4e4e4;
+  stroke-width: 1;
+}
+.blocklyScrollbarKnob {
+  fill: #ccc;
+}
+.blocklyScrollbarBackground:hover+.blocklyScrollbarKnob,
+.blocklyScrollbarKnob:hover {
+  fill: #bbb;
+}
+.blocklyInvalidInput {
+  background: #faa;
+}
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: .8;
+}
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: .8;  
+}
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.blocklyContextMenu {
+  border-radius: 4px;
+}
+.blocklyDropdownMenu {
+  padding: 0 !important;
+}
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {
+  background: url(https://blockly-demo.appspot.com/static/media/sprites.png) no-repeat -48px -16px !important;
+}
+.blocklyToolboxDiv {
+ display: none;
+  overflow-x: visible;
+  overflow-y: auto;
+  position: absolute;
+}
+.blocklyTreeRoot {
+  padding: 4px 0;
+}
+.blocklyTreeRoot:focus {
+  outline: none;
+}
+.blocklyTreeRow {
+  line-height: 22px;
+  height: 22px;
+  padding-right: 1em;
+  white-space: nowrap;
+}
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  padding-right: 0;
+  padding-left: 1em !important;
+}
+.blocklyTreeRow:hover {
+  background-color: #e4e4e4;
+}
+.blocklyTreeSeparator {
+  border-bottom: solid #e5e5e5 1px;
+  height: 0px;
+  margin: 5px 0;
+}
+.blocklyTreeIcon {
+  background-image: url(https://blockly-demo.appspot.com/static/media/sprites.png);
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+}
+.blocklyTreeIconClosedLtr {
+  background-position: -32px -1px;
+}
+.blocklyTreeIconClosedRtl {
+  background-position: 0px -1px;
+}
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+.blocklyTreeSelected>.blocklyTreeIconClosedLtr {
+  background-position: -32px -17px;
+}
+.blocklyTreeSelected>.blocklyTreeIconClosedRtl {
+  background-position: 0px -17px;
+}
+.blocklyTreeSelected>.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+.blocklyTreeIconNone,
+.blocklyTreeSelected>.blocklyTreeIconNone {
+  background-position: -48px -1px;
+}
+.blocklyTreeLabel {
+  cursor: default;
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+.blocklyTreeSelected  {
+  background-color: #575757 !important;
+}
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+.blocklyWidgetDiv .goog-palette {
+  outline: none;
+  cursor: default;
+}
+.blocklyWidgetDiv .goog-palette-table {
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+.blocklyWidgetDiv .goog-palette-cell {
+  height: 13px;
+  width: 15px;
+  margin: 0;
+  border: 0;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #666;
+  font-size: 1px;
+}
+.blocklyWidgetDiv .goog-palette-colorswatch {
+  position: relative;
+  height: 13px;
+  width: 15px;
+  border: 1px solid #666;
+}
+.blocklyWidgetDiv .goog-palette-cell-hover .goog-palette-colorswatch {
+  border: 1px solid #FFF;
+}
+.blocklyWidgetDiv .goog-palette-cell-selected .goog-palette-colorswatch {
+  border: 1px solid #000;
+  color: #fff;
+}
+.blocklyWidgetDiv .goog-menu {
+  background: #fff;
+  border-color: #ccc #666 #666 #ccc;
+  border-style: solid;
+  border-width: 1px;
+  cursor: default;
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  z-index: 20000;
+}
+.blocklyWidgetDiv .goog-menuitem {
+  color: #000;
+  font: normal 13px Arial, sans-serif;
+  list-style: none;
+  margin: 0;
+  padding: 4px 7em 4px 28px;
+  white-space: nowrap;
+}
+.blocklyWidgetDiv .goog-menuitem.goog-menuitem-rtl {
+  padding-left: 7em;
+  padding-right: 28px;
+}
+.blocklyWidgetDiv .goog-menu-nocheckbox .goog-menuitem,
+.blocklyWidgetDiv .goog-menu-noicon .goog-menuitem {
+  padding-left: 12px;
+}
+.blocklyWidgetDiv .goog-menu-noaccel .goog-menuitem {
+  padding-right: 20px;
+}
+.blocklyWidgetDiv .goog-menuitem-content {
+  color: #000;
+  font: normal 13px Arial, sans-serif;
+}
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-accel,
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-content {
+  color: #ccc !important;
+}
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-icon {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+.blocklyWidgetDiv .goog-menuitem-highlight,
+.blocklyWidgetDiv .goog-menuitem-hover {
+  background-color: #d6e9f8;
+  border-color: #d6e9f8;
+  border-style: dotted;
+  border-width: 1px 0;
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+.blocklyWidgetDiv .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-menuitem-icon {
+  background-repeat: no-repeat;
+  height: 16px;
+  left: 6px;
+  position: absolute;
+  right: auto;
+  vertical-align: middle;
+  width: 16px;
+}
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-icon {
+  left: auto;
+  right: 6px;
+}
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0;
+}
+.blocklyWidgetDiv .goog-menuitem-accel {
+  color: #999;
+  direction: ltr;
+  left: auto;
+  padding: 0 6px;
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-accel {
+  left: 0;
+  right: auto;
+  text-align: left;
+}
+.blocklyWidgetDiv .goog-menuitem-mnemonic-hint {
+  text-decoration: underline;
+}
+.blocklyWidgetDiv .goog-menuitem-mnemonic-separator {
+  color: #999;
+  font-size: 12px;
+  padding-left: 4px;
+}
+.blocklyWidgetDiv .goog-menuseparator {
+  border-top: 1px solid #ccc;
+  margin: 4px 0;
+  padding: 0;
+}
+</style></head>
+<body>
+	<!--  <button onclick="showCode()">Show JavaScript</button>-->
+
+	<div id="blocklyDiv" dir="LTR"><div class="blocklyToolboxDiv" dir="LTR" style="display: block; margin-left: 0px; height: 1020px;"><div class="blocklyTreeRoot" id=":0" role="tree" aria-selected="false" aria-expanded="false" aria-level="0" aria-labelledby=":0.label" hidefocus="true" tabindex="0" aria-activedescendant=":8"><div class="blocklyTreeRow blocklyHidden" style="padding-left:0px;"><span style="display:inline-block;" class="" role="presentation"></span><span class="blocklyTreeLabel" id=":0.label"></span><span></span></div><div style="background-position:-100px 0;" role="group"><div class="" id=":1" role="treeitem" aria-selected="false" aria-expanded="true" aria-level="1" aria-labelledby=":1.label" aria-setsize="4" aria-posinset="1"><div class="blocklyTreeRow" style="padding-left:0px;"><span role="presentation" class="blocklyTreeIcon undefined undefined"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconOpen" role="presentation"></span><span class="blocklyTreeLabel" id=":1.label">Common</span><span></span></div><div style="background-position: 0px 0px;" role="group"><div class="" id=":2" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="2" aria-labelledby=":2.label"><div class="blocklyTreeRow" style="padding-left:19px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":2.label">general</span><span></span></div><div style="background-position:19px 0;display:none;" role="group"></div></div><div class="" id=":3" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="2" aria-labelledby=":3.label"><div class="blocklyTreeRow" style="padding-left:19px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":3.label">Logic</span><span></span></div><div style="background-position:19px 0;display:none;" role="group"></div></div><div class="" id=":4" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="2" aria-labelledby=":4.label"><div class="blocklyTreeRow" style="padding-left:19px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":4.label">Loops</span><span></span></div><div style="background-position:19px 0;display:none;" role="group"></div></div><div class="" id=":5" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="2" aria-labelledby=":5.label"><div class="blocklyTreeRow" style="padding-left:19px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":5.label">Text</span><span></span></div><div style="background-position:19px 0;display:none;" role="group"></div></div><div class="" id=":6" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="2" aria-labelledby=":6.label"><div class="blocklyTreeRow" style="padding-left:19px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":6.label">Event</span><span></span></div><div style="background-position:-100px 0;display:none;" role="group"></div></div></div></div><div class="" id=":7" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":7.label" aria-setsize="4" aria-posinset="2"><div class="blocklyTreeRow" style="padding-left:0px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":7.label">Behavior</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":8" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":8.label" aria-setsize="4" aria-posinset="3"><div class="blocklyTreeRow" style="padding-left:0px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":8.label">SnowBoard</span><span></span></div><div style="background-position:0px 0;display:none;" role="group"></div></div><div class="" id=":9" role="treeitem" aria-selected="false" aria-expanded="false" aria-level="1" aria-labelledby=":9.label" aria-setsize="4" aria-posinset="4"><div class="blocklyTreeRow" style="padding-left:0px;"><span role="presentation"></span><span style="display:inline-block;" class="blocklyTreeIcon blocklyTreeIconNone" role="presentation"></span><span class="blocklyTreeLabel" id=":9.label">Golf</span><span></span></div><div style="background-position:-100px 0;display:none;" role="group"></div></div></div></div></div><svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" width="777px" height="1019px"><defs><filter id="blocklyEmboss"><feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"></feGaussianBlur><feSpecularLighting in="blur" surfaceScale="1" specularConstant="0.5" specularExponent="10" lighting-color="white" result="specOut"><fePointLight x="-5000" y="-10000" z="20000"></fePointLight></feSpecularLighting><feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"></feComposite><feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"></feComposite></filter><filter id="blocklyTrashcanShadowFilter"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"></feGaussianBlur><feOffset in="blur" dx="1" dy="1" result="offsetBlur"></feOffset><feMerge><feMergeNode in="offsetBlur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter><filter id="blocklyShadowFilter"><feGaussianBlur stdDeviation="2"></feGaussianBlur></filter><pattern id="blocklyDisabledPattern" patternUnits="userSpaceOnUse" width="10" height="10"><rect width="10" height="10" fill="#aaa"></rect><path d="M 0 0 L 10 10 M 10 0 L 0 10" stroke="#cc0"></path></pattern></defs><g><g filter="url(#blocklyTrashcanShadowFilter)" style="opacity: 0.2;" transform="translate(695,924)"><clipPath id="blocklyTrashBodyClipPath"><rect width="47" height="45" y="15"></rect></clipPath><image width="64" height="92" y="-32" clip-path="url(#blocklyTrashBodyClipPath)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://blockly-demo.appspot.com/static/media/sprites.png"></image><clipPath id="blocklyTrashLidClipPath"><rect width="47" height="15"></rect></clipPath><image width="64" height="92" y="-32" clip-path="url(#blocklyTrashLidClipPath)" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://blockly-demo.appspot.com/static/media/sprites.png" transform="rotate(0, 43, 13)"></image></g><g transform="translate(34,42.00000000000091)"><g transform="translate(106, 57)" class="blocklySelected"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#374d63" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 169.89260864257812 v 25 H 50 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 277 a 8,8 0 0,0 8,8 H 169.89260864257812 v 10 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#5b80a5" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 169.89260864257812 v 25 H 50 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 277 a 8,8 0 0,0 8,8 H 169.89260864257812 v 10 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#8ca6c0" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 169.89260864257812 M 168.89260864257812,1 M 168.89260864257812,26 M 21.63603896932107,316.3639610306789 a 9,9 0 0,0 6.363961030678928,2.636038969321072 H 169.89260864257812 M 3.050252531694167,324.9497474683058 A 7,7 0 0,1 1,320 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">Observer&nbsp;(관찰&nbsp;하라)</text><g transform="translate(20, 26)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#374d63" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 39 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPath" fill="#5b80a5" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 39 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPathLight" stroke="#8ca6c0" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 68.32498168945312 M 67.32498168945312,1 M 64.12498168945312,19.6 l 3.04,-1.8 M 67.32498168945312,27 M 39.961020658774196,79.36396103067892 a 9,9 0 0,0 6.363961030678928,2.636038969321072 H 68.32498168945312 M 1,91 V 8
+"></path><text class="blocklyText" transform="translate(36, 18)">if</text><text class="blocklyText" transform="translate(10, 44)">do</text><g class="blocklyIconGroup" display="block" transform="translate(10, 5)"><rect class="blocklyIconShield" width="16" height="16" rx="4" ry="4"></rect><text class="blocklyIconMark" x="8" y="12">★</text></g><g transform="translate(0, 92)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#374d63" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 13 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPath" fill="#5b80a5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 13 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPathLight" stroke="#8ca6c0" d="m 1,1 H 15 l 6.5,4 2,0 6.5,-4 H 68.32498168945312 M 67.32498168945312,1 M 64.12498168945312,19.6 l 3.04,-1.8 M 67.32498168945312,27 M 39.961020658774196,53.36396103067893 a 9,9 0 0,0 6.363961030678928,2.636038969321072 H 68.32498168945312 M 1,65 V 1
+"></path><text class="blocklyText" transform="translate(36, 18)">if</text><text class="blocklyText" transform="translate(10, 44)">do</text><g class="blocklyIconGroup" display="block" transform="translate(10, 5)"><rect class="blocklyIconShield" width="16" height="16" rx="4" ry="4"></rect><text class="blocklyIconMark" x="8" y="12">★</text></g><g transform="translate(0, 66)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#374d63" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 13 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPath" fill="#5b80a5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 13 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPathLight" stroke="#8ca6c0" d="m 1,1 H 15 l 6.5,4 2,0 6.5,-4 H 68.32498168945312 M 67.32498168945312,1 M 64.12498168945312,19.6 l 3.04,-1.8 M 67.32498168945312,27 M 39.961020658774196,53.36396103067893 a 9,9 0 0,0 6.363961030678928,2.636038969321072 H 68.32498168945312 M 1,65 V 1
+"></path><text class="blocklyText" transform="translate(36, 18)">if</text><text class="blocklyText" transform="translate(10, 44)">do</text><g class="blocklyIconGroup" display="block" transform="translate(10, 5)"><rect class="blocklyIconShield" width="16" height="16" rx="4" ry="4"></rect><text class="blocklyIconMark" x="8" y="12">★</text></g><g transform="translate(0, 66)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#374d63" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 13 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#5b80a5" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 68.32498168945312 v 5 c 0,10 -8,-8 -8,7.5 s 8,-2.5 8,7.5 v 6 H 68.32498168945312 l -6,4 -3,0 -6,-4 h -7 a 8,8 0 0,0 -8,8 v 13 a 8,8 0 0,0 8,8 H 68.32498168945312 v 10 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#8ca6c0" d="m 1,1 H 15 l 6.5,4 2,0 6.5,-4 H 68.32498168945312 M 67.32498168945312,1 M 64.12498168945312,19.6 l 3.04,-1.8 M 67.32498168945312,27 M 39.961020658774196,53.36396103067893 a 9,9 0 0,0 6.363961030678928,2.636038969321072 H 68.32498168945312 M 3.050252531694167,61.94974746830583 A 7,7 0 0,1 1,57 V 1
+"></path><text class="blocklyText" transform="translate(36, 18)">if</text><text class="blocklyText" transform="translate(10, 44)">do</text><g class="blocklyIconGroup" display="block" transform="translate(10, 5)"><rect class="blocklyIconShield" width="16" height="16" rx="4" ry="4"></rect><text class="blocklyIconMark" x="8" y="12">★</text></g><g transform="translate(38, 27)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 199.978515625 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 199.978515625 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 40 M 39,1 H 199.978515625 M 3.050252531694167,21.949747468305834 A 7,7 0 0,1 1,17 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">화면을&nbsp;&nbsp;</text><g class="blocklyEditableText" transform="translate(79.49893188476562, 18)" style="cursor: default;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="58.310638427734375"></rect><text class="blocklyText">test1<tspan style="fill: rgb(0, 0, 0);"> ▾</tspan></text></g><text class="blocklyText" transform="translate(137.8095703125, 18)">로&nbsp;변경</text></g><g transform="translate(69, 0)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 161.84686279296875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 161.84686279296875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 161.84686279296875 M 160.84686279296875,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">오른쪽으로&nbsp;꺾었다면</text></g></g><g transform="translate(38, 27)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 198.39657592773438 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 198.39657592773438 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 40 M 39,1 H 198.39657592773438 M 3.050252531694167,21.949747468305834 A 7,7 0 0,1 1,17 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">Unity로&nbsp;</text><g class="blocklyEditableText" transform="translate(78.09591674804688, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="73.07803344726562"></rect><text class="blocklyText">Message</text></g><text class="blocklyText" transform="translate(151.1739501953125, 18)">&nbsp;전송</text></g><g transform="translate(69, 0)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 146.90054321289062 M 145.90054321289062,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">브레이크를&nbsp;한다면</text></g></g><g transform="translate(69, 0)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 20 H 219.92840576171875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 20 H 219.92840576171875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 20 M 19,1 H 219.92840576171875 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">SnowBoard&nbsp;jump&nbsp;is&nbsp;</text><g class="blocklyEditableText" transform="translate(169.3772430419922, 18)" style="cursor: default;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="50.55116271972656"></rect><text class="blocklyText">true<tspan style="fill: rgb(0, 0, 0);"> ▾</tspan></text></g></g><g transform="translate(38, 27)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 169.86399841308594 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 169.86399841308594 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 40 M 39,1 H 169.86399841308594 M 3.050252531694167,21.949747468305834 A 7,7 0 0,1 1,17 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">Unity로&nbsp;</text><g class="blocklyEditableText" transform="translate(78.09591674804688, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="44.54545593261719"></rect><text class="blocklyText">jump</text></g><text class="blocklyText" transform="translate(122.64137268066406, 18)">&nbsp;전송</text></g></g><g transform="translate(69, 0)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 146.90054321289062 M 145.90054321289062,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">왼쪽으로&nbsp;꺾었다면</text></g><g transform="translate(38, 27)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 157.78094482421875 v 25 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 40 H 157.78094482421875 v 25 H 30 l -6,4 -3,0 -6,-4 H 0 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 40 M 39,1 H 157.78094482421875 M 1,25 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">Unity로&nbsp;</text><g class="blocklyEditableText" transform="translate(78.09591674804688, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="32.46240234375"></rect><text class="blocklyText">left</text></g><text class="blocklyText" transform="translate(110.55831909179688, 18)">&nbsp;전송</text><g transform="translate(0, 26)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 40 H 152.72726440429688 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 15 l 6,4 3,0 6,-4 H 40 H 152.72726440429688 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 15 l 6.5,4 2,0 6.5,-4 H 40 M 39,1 H 152.72726440429688 M 3.050252531694167,21.949747468305834 A 7,7 0 0,1 1,17 V 1
+"></path><text class="blocklyText" transform="translate(10, 18)">Unity로&nbsp;</text><g class="blocklyEditableText" transform="translate(78.09591674804688, 18)" style="cursor: text;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="27.408721923828125"></rect><text class="blocklyText">30</text></g><text class="blocklyText" transform="translate(105.504638671875, 18)">&nbsp;전송</text></g></g></g></g></g><g transform="translate(34,42.00000000000091)"></g><rect height="15" width="15" style="fill: #fff" x="762" y="1004"></rect><g transform="translate(762, 0)"><rect class="blocklyScrollbarBackground" width="15" height="1004"></rect><rect class="blocklyScrollbarKnob" rx="4" ry="4" width="9" x="3" height="610.7916417910448" y="342.8585074626861"></rect></g><g transform="translate(125, 1004)"><rect class="blocklyScrollbarBackground" height="15" width="637"></rect><rect class="blocklyScrollbarKnob" rx="4" ry="4" height="9" y="3" width="430.80203014191073" x="206.19796985808927"></rect></g></g><g transform="translate(125,0)" style="display: none;"><path class="blocklyFlyoutBackground" d="M 0,0 h 254.92840576171875 a 8 8 0 0 1 8 8 v 920 a 8 8 0 0 1 -8 8 h -254.92840576171875 z"></path><g><g transform="translate(0,8)"><rect fill-opacity="0" width="223.00645446777344" height="30" x="16" y="8"></rect><g transform="translate(16, 8)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 223.00645446777344 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,8 A 8,8 0 0,1 8,0 H 15 l 6,4 3,0 6,-4 H 223.00645446777344 v 25 H 30 l -6,4 -3,0 -6,-4 H 8 a 8,8 0 0,1 -8,-8 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,7 A 7,7 0 0,1 8,1 H 15 l 6.5,4 2,0 6.5,-4 H 223.00645446777344 M 222.00645446777344,1 M 3.050252531694167,21.949747468305834 A 7,7 0 0,1 1,17 V 8
+"></path><text class="blocklyText" transform="translate(10, 18)">Import&nbsp;SnowBoard&nbsp;Function</text></g><rect fill-opacity="0" width="227.92840576171875" height="26" x="16" y="62"></rect><rect fill-opacity="0" width="154.90054321289062" height="26" x="16" y="112"></rect><rect fill-opacity="0" width="169.84686279296875" height="26" x="16" y="162"></rect><rect fill-opacity="0" width="154.90054321289062" height="26" x="16" y="212"></rect><g transform="translate(16, 212)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 146.90054321289062 M 145.90054321289062,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">브레이크를&nbsp;한다면</text></g><rect fill-opacity="0" width="125.00790405273438" height="26" x="16" y="262"></rect><g transform="translate(16, 262)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 117.00790405273438 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 117.00790405273438 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 117.00790405273438 M 116.00790405273438,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">가속을&nbsp;한다면</text></g><g transform="translate(16, 62)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 20 H 219.92840576171875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 20 H 219.92840576171875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 20 M 19,1 H 219.92840576171875 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">SnowBoard&nbsp;jump&nbsp;is&nbsp;</text><g class="blocklyEditableText" transform="translate(169.3772430419922, 18)" style="cursor: default;"><rect rx="4" ry="4" x="-5" y="-12" height="16" width="50.55116271972656"></rect><text class="blocklyText">true<tspan style="fill: rgb(0, 0, 0);"> ▾</tspan></text></g></g><g transform="translate(16, 112)"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 146.90054321289062 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 146.90054321289062 M 145.90054321289062,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">왼쪽으로&nbsp;꺾었다면</text></g><g transform="translate(16, 162)" class="blocklySelected"><path class="blocklyPathDark" transform="translate(1, 1)" fill="#000000" d="m 0,0 H 161.84686279296875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPath" fill="#000000" d="m 0,0 H 161.84686279296875 v 25 H 0 V 20 c 0,-10 -8,8 -8,-7.5 s 8,2.5 8,-7.5 z
+"></path><path class="blocklyPathLight" stroke="#4d4d4d" d="m 1,1 H 161.84686279296875 M 160.84686279296875,1 M 1,25 V 19 m -7.36,-1 q -1.52,-5.5 0,-11 m 7.36,1 V 1 H 2
+"></path><text class="blocklyText" transform="translate(10, 18)">오른쪽으로&nbsp;꺾었다면</text></g></g><g></g><g display="none" transform="translate(247.92840576171875, 8)"><rect class="blocklyScrollbarBackground" width="15" height="920"></rect><rect class="blocklyScrollbarKnob" rx="4" ry="4" width="9" x="3" height="2908.591065292096" y="0"></rect></g></g></g><g class="blocklyHidden" transform="translate(381,292)" style="display: none;"><rect class="blocklyTooltipShadow" x="2" y="2" width="263.5" height="12"></rect><rect class="blocklyTooltipBackground" width="263.5" height="12"></rect><text class="blocklyTooltipText"><tspan dy="1em" x="5">If a value is true, then do some statements.</tspan></text></g></svg></div>
+
+	<xml id="toolbox" style="display: none">
+		<category name="Common">
+			<category name="general"> 
+				<block type="start_accel_Sensor"></block>
+				<block type="transmit_geartounity"></block> 
+				<block type="transform_scene"></block>
+				<block type="rotate_angle"></block> 
+				<block type="move_target"></block> 
+			</category>
+			<category name="Logic">
+				<block type="observe"></block> <block type="controls_if"></block>
+				<block type="logic_compare"></block> <block type="logic_operation"></block> 
+				<block type="logic_negate"></block> <block type="logic_boolean"></block> 
+			</category> 
+			<category name="Loops"> 
+				<block type="controls_repeat_ext"> 
+					<value name="TIMES"> 
+						<block type="math_number"> 
+							<field name="NUM">10</field>
+						</block> 
+					</value>
+				</block> 
+				<block type="controls_whileUntil"></block> 
+			</category> 
+			<category name="Text"> 
+				<block type="text_print"></block> 
+				<block type="text"></block> 
+				<block type="text_length"></block> 
+			</category> 
+			<category name="Event"> 
+				<block type="touch_event"></block> 
+				<block type="onload_event"></block> 
+				<block type="mouse_point"></block> 
+				<block type="vibration"></block> 
+			</category>
+		</category>
+		<category name="Behavior"> 
+			<block type="import_behavior_function"></block>
+			<block type="is_up_motion"></block> 
+			<block type="is_down_motion"></block>
+			<block type="is_right_motion"></block>
+			<block type="is_left_motion"></block>
+			<block type="is_ratate_clockwise"></block>
+			<block type="is_ratate_counterclockwise"></block>
+		</category> 
+		<category name="SnowBoard"> 
+			<block type="import_snowboard_function"></block>
+			<block type="is_boardjump"></block> 
+			<block type="is_snowboard_turn_left"></block>
+			<block type="is_snowboard_turn_right"></block>
+			<block type="is_snowboard_break"></block>
+			<block type="is_snowboard_accel"></block>
+		</category> 
+		<category name="Golf"> 
+			<block type="import_golf_function"></block>
+			<block type="is_golfshot"></block>
+		</category> 
+		</xml>
+	<xml id="startBlocks" style="display: none"> </xml>
+
+	<script>
+		Blockly.inject(document.getElementById('blocklyDiv'), {
+			toolbox : document.getElementById('toolbox')
+		});
+		Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, document
+				.getElementById('startBlocks'));
+
+		function getJSCode() {
+			// Generate JavaScript code and display it.
+			Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+			var code = Blockly.JavaScript.workspaceToCode();
+			return code;
+		}
+		
+	</script><div class="blocklyWidgetDiv" style="direction: ltr; display: none; width: auto; left: 489px; top: 272px;"></div>
+
+
+
+</body>
+</html>

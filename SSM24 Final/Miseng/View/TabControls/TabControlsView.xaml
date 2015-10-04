@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="Miseng.View.TabControls.TabControlsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        xmlns:extendAttribute="clr-namespace:Miseng.View.ExtendAttribute"
+        xmlns:extendFunctionMaking="clr-namespace:Miseng.View.ExtendFunctionMaking"
+        xmlns:extendUIMaking="clr-namespace:Miseng.View.ExtendUIMaking"
+        xmlns:uIMaking="clr-namespace:Miseng.View.UIMaking"
+        xmlns:functionMaking="clr-namespace:Miseng.View.FunctionMaking"
+        xmlns:attribute="clr-namespace:Miseng.View.Attribute"
+        mc:Ignorable="d ignore">
+
+    <TabControl Background="#FF252526" x:Name="TabContols" SelectedIndex="0">
+
+        <!-- UI Mode -->
+        <TabItem Name="UIMakingTab">
+            <TabItem.Header x:Uid="UIMaking" >
+                <TextBlock MinWidth="1" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">UI</TextBlock>
+                <!-- ON클릭일 떄 Background="FF333337" or 252526
+                                    아닐떄 Background="#FF3F3F46"-->
+            </TabItem.Header>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="50" Height="*"/>
+                    <RowDefinition MinHeight="50" Height="*" />
+                </Grid.RowDefinitions>
+                <!-- UI 모드1  -->
+                <Grid Grid.Row="0">
+                    <Border BorderBrush="Gray" BorderThickness="1" >
+                        <uIMaking:UIMakingView Margin="0,0,0,10"/>
+                    </Border>
+                </Grid>
+
+                <!-- 모드1,2 Splitter -->
+                <GridSplitter Grid.Row="0" Grid.RowSpan="1" ResizeDirection="Rows" Width="Auto" Height="10" 
+                              HorizontalAlignment="Stretch"  VerticalAlignment="Bottom" Margin="0,0,2,0"  Background="#FF2D2D30"
+                              Name="MakingSplitter1" BorderBrush="Gray" BorderThickness="0,0.5,0,0.5" />
+
+                <!-- UI 모드2  -->
+                <Grid Grid.Row="1">
+                    <Border BorderBrush="Gray" BorderThickness="1" >
+                        <extendUIMaking:ExtendUIMakingView />
+                    </Border>
+                </Grid>
+            </Grid>
+        </TabItem>
+
+        <!-- 기능 Mode -->
+        <TabItem x:Name="FunctionMakingTab">
+            <TabItem.Header>
+                <TextBlock MinWidth="1" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="White">FUNCTION</TextBlock>
+            </TabItem.Header>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="50" Height="*"/>
+                    <RowDefinition MinHeight="50" Height="*" />
+                </Grid.RowDefinitions>
+                <!-- 기능 모드1 -->
+                <Grid Grid.Row="0">
+                    <Border BorderBrush="Gray" BorderThickness="1" >
+                        <functionMaking:FunctionMakingView Margin="0,0,0,10"/>
+                    </Border>
+                </Grid>
+
+                <!-- 모드1,2 Splitter -->
+                <GridSplitter Grid.Row="0" Grid.RowSpan="1" ResizeDirection="Rows" Width="Auto" Height="10" HorizontalAlignment="Stretch" 
+                              VerticalAlignment="Bottom" Margin="0,0,2,0" Background="#FF2D2D30" Name="MakingSplitter2"
+                               BorderBrush="Gray" BorderThickness="0,0.5,0,0.5"/>
+
+                <!-- 기능 모드2  -->
+                <Grid Grid.Row="1">
+                    <Border BorderBrush="Gray" BorderThickness="1" >
+                        <extendFunctionMaking:ExtendFunctionMakingView/>
+                    </Border>
+                </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

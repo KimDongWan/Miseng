@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\MissengPlugin.cs">
+    <Files>
+      <File FileName="Assets\script\MissengPlugin.cs" Line="36" Column="1" />
+      <File FileName="Assets\Standard Assets\dynamic_shoot_ball.js" Line="12" Column="36" />
+      <File FileName="Assets\Standard Assets\SmoothFollow.js" Line="7" Column="38" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

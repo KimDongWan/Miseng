@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<!-- saved from url=(0011)about:blank -->
+<!-- saved from url=(0016)http://localhost --> 
+<!-- saved from url=(0027)http://localhost\blockly\blockly\index.html --> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=11" >
+<meta http-equiv="cache-control" content="no-cache">
+<title>Blockly Demo: Generating JavaScript</title>
+<script src="jquery-1.11.2.min.js"></script>
+<script src="blockly_compressed.js"></script>
+<script src="blocks_compressed.js"></script>
+<script src="javascript_compressed.js"></script>
+<script src="storage.js"></script>
+<script src="en.js"></script>
+<script src="custum_block.js"></script>
+<script src="init_data.js"></script>
+<script src="blockly_load.js"></script>
+
+
+<style>
+html{
+	width:100%;
+	height:100%;
+	
+}
+body {
+	margin:0px !important;
+	padding:0px !important;
+	overflow:hidden !important;
+	width:100%;
+	height:100%;
+	min-height:100% !important;
+	background-color: #1A1A1A;
+	font-family: sans-serif;
+	marin:0px;
+	padding:0px;
+	
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 140%;
+}
+#blocklyDiv{
+	overflow:hidden;
+	width:100%;
+	height:100%;
+	
+	min-height:100% !important;
+	margin:0px;
+	padding:0px;	
+	font-weight:700;
+	color:gray;
+	
+	background-color: #2D2D2D;
+background-image: linear-gradient(45deg, #2F2F2F 25%, transparent 25%, transparent 75%, #2F2F2F 75%, #2F2F2F), 
+linear-gradient(45deg, #2F2F2F 25%, transparent 25%, transparent 75%, #2F2F2F 75%, #2F2F2F);
+background-size:20px 20px;
+background-position:0 0, 30px 30px;	
+	
+}
+.blocklyScrollbarBackground{
+	display: none;
+}
+.blocklyScrollbarKnob{
+	display: none;
+}
+
+.blocklyNonEditableText>rect, .blocklyEditableText>rect{
+	fill:#FFF;
+}
+.blocklySvg>g>rect{
+	fill:#2D2D2D !important;
+}
+</style>
+</head>
+<body>
+	<!--  <button onclick="showCode()">Show JavaScript</button>-->
+
+	<div id="blocklyDiv"></div>
+
+	<xml id="toolbox" style="display: none">
+		<category name="Common">
+			<category name="general">				
+				<block type="transmit_geartounity"></block> 
+				<block type="transform_scene"></block>
+				<block type="rotate_angle"></block> 
+				<block	type="move_target"></block> 
+				<block type="recieve_message">	
+					<value name="condition">
+						<block type="text" id="16">
+							<field name="TEXT">MSG</field>
+						</block>
+					</value>				
+				</block>
+			</category>
+			<category name="Logic">
+				<block type="observe"></block> <block type="controls_if"></block>
+				<block type="logic_compare"></block> <block type="logic_operation"></block> 
+				<block type="logic_negate"></block> <block type="logic_boolean"></block> 
+			</category> 
+			<category name="Loops"> 
+				<block type="controls_repeat_ext"> 
+					<value name="TIMES"> 
+						<block type="math_number"> 
+							<field name="NUM">10</field>
+						</block> 
+					</value>
+				</block> 
+				<block type="controls_whileUntil"></block> 
+			</category> 
+			<category name="Text"> 
+				<block type="text_print"></block> 
+				<block type="text"></block> 
+				<block type="text_length"></block> 
+			</category> 
+			<category name="Event"> 
+				<block type="touch_event"></block> 
+				<block type="onload_event"></block> 
+				<block type="mouse_point"></block> 
+				<block type="vibration"></block> 
+			</category>
+		</category>
+		<category name="Behavior">			
+			<block type="is_up_motion"></block> 
+			<block type="is_down_motion"></block>
+			<block type="is_right_motion"></block>
+			<block type="is_left_motion"></block>
+			<block type="is_rotate_clockwise"></block>
+			<block type="is_rotate_counterclockwise"></block>
+		</category> 
+		<category name="SnowBoard">			
+			<block type="is_boardjump"></block> 
+			<block type="is_snowboard_turn_left"></block>
+			<block type="is_snowboard_turn_right"></block>
+			<block type="is_snowboard_break"></block>
+			<block type="is_snowboard_accel"></block>
+		</category> 
+		<category name="Golf">			
+			<block type="is_golfshot"></block>
+		</category> 
+		</xml>
+		
+		
+		
+</body>
+</html>

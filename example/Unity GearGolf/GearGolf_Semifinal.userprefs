@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Trigger\Bunker.js">
+    <Files>
+      <File FileName="Assets\Standard Assets\waterEvent.js" Line="11" Column="100" />
+      <File FileName="Assets\Standard Assets\dynamic_shoot_ball.js" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\holeCup.js" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\ClubChanger.js" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Trigger\Bunker.js" Line="11" Column="42" />
+      <File FileName="Assets\Standard Assets\Look.js" Line="39" Column="46" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

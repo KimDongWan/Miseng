@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\EndMsg.js">
+    <Files>
+      <File FileName="Assets\script\PluginTest.cs" Line="83" Column="41" />
+      <File FileName="Assets\Standard Assets\dynamic_shoot_ball.js" Line="10" Column="23" />
+      <File FileName="Assets\Standard Assets\ClubChanger.js" Line="25" Column="1" />
+      <File FileName="Assets\Standard Assets\Look.js" Line="26" Column="22" />
+      <File FileName="Assets\Standard Assets\SmoothFollow.js" Line="47" Column="25" />
+      <File FileName="Assets\Standard Assets\BallGUI.js" Line="20" Column="4" />
+      <File FileName="Assets\Standard Assets\EndMsg.js" Line="8" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
